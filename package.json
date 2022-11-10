@@ -1,0 +1,26 @@
+{
+  "name": "image-resizer-electron",
+  "productName": "Image Resizer",
+  "version": "1.0.0",
+  "description": "Image resizing application",
+  "main": "main.js",
+  "scripts": {
+    "test": "test",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnwarejunior/image-resizer-electron.git"
+  },
+  "author": "John Ware",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johnwarejunior/image-resizer-electron/issues"
+  },
+  "homepage": "https://github.com/johnwarejunior/image-resizer-electron#readme",
+  "dependencies": {
+    "electron": "^6.1.12",
+    "resize-img": "^1.1.2",
+    "toastify-js": "^1.12.0"
+  }
+}
