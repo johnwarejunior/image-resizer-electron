@@ -5,6 +5,9 @@ const filename = document.querySelector('#filename');
 const heightInput = document.querySelector('#height');
 const widthInput = document.querySelector('#width');
 
+
+let ipcRenderer;
+
 function loadImage(e) {
   const file = e.target.files[0];
 
@@ -44,7 +47,19 @@ function sendImage(e) {
     alertError('Please fill in a height and width');
     return;
   }
+
+  //Send to main using ipcRenderer
+  ipcRenderer.send('image:resize', {
+    imgPath,
+    width,
+    height,
+  });
 }
+
+// Catch the image:done event
+ipcRenderer.on('image:done', () => {
+  alertSuccess(`Image resized to ${widthInput.value} x ${heightInput.value}`);
+})
 
 // Make sure file is image
 function isFileImage(file) {
@@ -61,8 +76,8 @@ function alertSuccess(message) {
       background: 'green',
       color: 'white',
       textAlign: 'center'
-    }
-  })
+    },
+  });
 }
 
 function alertError(message) {
@@ -74,8 +89,8 @@ function alertError(message) {
       background: 'red',
       color: 'white',
       textAlign: 'center'
-    }
-  })
+    },
+  });
 }
 
 img.addEventListener('change', loadImage);
